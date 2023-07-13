@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>按钮页面</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <style>
+        body {
+            background-color: #F5F5F5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #FFFFFF;
+            border-radius: 4px;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+
+        h2 {
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 24px;
+            color: #424242;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .mdl-button {
+            display: block;
+            width: 100%;
+            height: 56px;
+            border-radius: 4px;
+            text-align: center;
+            background-color: #3F51B5;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+
+        .mdl-button:hover {
+            background-color: #303F9F;
+        }
+
+        .mdl-button:active {
+            background-color: #283593;
+            box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>点击按钮进行查询：</h2>
+        <div class="button-container">
+            <form action="{% url 'result1' %}" method="get">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                    <span>查询所有数据库服务器的信息</span>
+                </button>
+            </form>
+            <form action="{% url 'result2' %}" method="get">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                    <span>查询 App005 应用的使用者</span>
+                </button>
+            </form>
+            <form action="{% url 'result3' %}" method="get">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                    <span>查询采用 SSL 加速的复杂均衡器的负载分发算法</span>
+                </button>
+            </form>
+            <form action="{% url 'user_selection' %}" method="get">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" type="submit">
+                    <span>用户应用推荐（模拟场景应用）</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
