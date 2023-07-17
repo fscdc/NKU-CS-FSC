@@ -1,0 +1,133 @@
+#include<iostream>
+#include<cmath>
+#include<cstring>
+using namespace std;
+int GetLevel(char ch)
+{
+    switch (ch)
+    {
+    case '+':
+    case '-':
+        return 1;
+    case '*':
+    case '/':
+        return 2;
+    default:
+            return 0;
+    };
+
+}
+template<class T>
+class stack
+{
+public:
+    T *base;
+    T *top;
+};
+template<class T>
+void instack(stack<T> &S){
+    S.base=new T[100];
+    S.top=S.base;
+}
+template<class T>
+void push(stack<T> &S,T num){
+    *(S.top)=num;
+    (S.top)++;
+}
+template<class T>
+T getfirstelem(stack<T> &S){
+    return *(S.top-1);
+}
+template<class T>
+bool isemptystack(stack<T> &S){
+    if(S.base==S.top){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+template<class T>
+int stacklength(stack<T> &S)
+{
+    return static_cast<int>(S.top - S.base);
+}
+template<class T>
+void pop(stack<T> &S){
+        (S.top)--;
+    }
+void eval(stack<double> &numberstack,stack<char> &charstack)
+{
+    double a=0,b=0;
+    char p='p';
+    a=getfirstelem(numberstack);
+    pop(numberstack);
+    b=getfirstelem(numberstack);
+    pop(numberstack);
+    p=getfirstelem(charstack);
+    pop(charstack);
+    double r = 0;
+    if(p == '+')r=b+a;
+    if(p == '-')r=b-a;
+    if(p == '*')r=b*a;
+    if(p == '/')r=b/a;
+    push(numberstack,r);
+}
+template<class T>
+void destroystack(stack<T> &S)
+{
+    
+    delete[] S.base;
+    S.base = S.top = nullptr;
+    
+}
+int main(){
+    stack<double> numberstack;
+    stack<char> charstack;
+    instack(numberstack);
+    instack(charstack);
+    string s;
+    cout<<"please input the expression"<<endl;
+    cin>>s;
+    for(int i=0;i<s.size();i++){
+        if(isdigit(s[i])){
+            double x=0;
+            int j=i;
+            while(j<s.size()&&isdigit(s[j])){
+                x=x*10+s[j]-'0';
+                j++;
+            }
+            push(numberstack,x);
+            i=j-1;
+        }
+        else{
+            if(s[i]=='('||stacklength(charstack)==0){
+                push(charstack,s[i]);
+            }
+            else {
+                if(s[i]==')'){
+                    while(getfirstelem(charstack)!='('){
+                        eval(numberstack,charstack);
+                    }
+                    pop(charstack);
+                }
+                else{
+                    if(GetLevel(getfirstelem(charstack))<GetLevel(s[i])){
+                        push(charstack,s[i]);
+                    }
+                    else{
+                        eval(numberstack,charstack);
+                        push(charstack,s[i]);
+                    }
+                }
+            }
+        }
+    }
+    while(stacklength(charstack)!=0){
+        eval(numberstack,charstack);
+    }
+    cout<<getfirstelem(numberstack)<<endl;
+    destroystack(numberstack);
+    destroystack(charstack);
+    return 0;
+}

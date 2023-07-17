@@ -1,0 +1,215 @@
+#include<iostream>
+#include<stack>
+#include<vector>
+#include<queue>
+using namespace std;
+template<class T>
+struct BinarySearchTreeNode//构造二叉搜索树节点，同时写一个带参的构造函数
+{
+    int num=0;
+    T Key;
+    BinarySearchTreeNode<T>* lchild;
+    BinarySearchTreeNode<T>* rchild;
+    BinarySearchTreeNode(const T& key){
+        Key=key;
+        lchild=nullptr;
+        rchild=nullptr;
+    }
+};
+template<class T>
+class BinarySearchTree
+{
+public:
+    typedef BinarySearchTreeNode<T> Node;//重命名为Node方便之后的使用
+    Node* root=nullptr;
+    int count=0;
+    BinarySearchTree() = default;/制生成默认的构造函数
+    bool insert(const T& key)//插入函数，如果插入成功返回true否则false
+    {
+        if (root == nullptr)//如果是空树，就new一个新值进去
+        {
+            root = new Node(key);
+            count++;
+            root->num = count;
+            return true;
+        }
+        Node* temp = root;//用temp遍历，用parent存储上一个结点的位置
+        Node* parent = temp;
+        while (temp)//遍历二叉搜索树，找到关键字key值应该在的位置
+        {
+            parent = temp;//更新parent的位置
+            if (temp->Key < key)//key值更大往右孩子继续遍历
+                temp=temp->rchild;
+            else if (temp->Key > key)//key值更小往左孩子继续遍历
+               temp= temp->lchild;
+            else//如果遇到一样的则不插入，返回false，插入失败
+                return false;
+        }//循环结束，说明插入结束
+        temp = new Node(key);//给temp动态创建一个新结点，链接到二叉搜索树上
+        count++;
+        temp->num = count;//结点序号加一
+        if (parent->Key < key)//key值更大插入到右子树，否则插左子树
+            parent->rchild = temp;
+        else
+            parent->lchild =temp;
+        return true;//插入成功，返回true
+    }
+    void find(int k)//
+    {
+        if (root == nullptr)//如果是空树，直接return结束查找
+            return ;
+        stack<Node*> s;//建立栈
+        Node* temp1 = root;//初始化temp1为跟结点，用来遍历
+        while (temp1 != nullptr || s.empty() == false)
+        {
+            
+            while (temp1 !=nullptr)//将左子树节点依次加入栈中
+            {
+                s.push(temp1);
+                temp1 = temp1->lchild;
+            }
+            temp1 = s.top();//让temp1重新等于栈顶元素，即最后被放进去的结点
+            if (temp1->num == k)//对序号进行搜索
+            {
+                cout << temp1->Key;
+                    cout << "(";
+                    if (temp1->lchild == nullptr)//左孩子是空则输出#，右孩子是空则输出#
+                    {
+                        cout << "#";
+                     }
+                    else
+                    {
+                        cout << temp1->lchild->Key;
+                    }
+                    cout << ",";
+                    if (temp1->rchild == nullptr)
+                    {
+                        cout << "#";
+                    }
+                    else
+                    {
+                        cout <<temp1->rchild->Key;
+                    }
+                cout<< ")" << endl;
+            }
+            s.pop();//访问完出栈
+            temp1 =temp1->rchild;//当访问完一个左节点的时候，访问右节点
+        }
+    }
+};
+class Solution {
+public:
+    int count1 = 0;
+    vector<int> nums;//nums是一个容器变量，容器名称为vector，容器内存的数据为int型，不指定长度
+    void inorder(BinarySearchTreeNode<int>* root) {//用递归算法进行中序遍历
+        if (!root) return;//如果是空则返回
+        inorder(root->lchild);
+        nums.push_back(root->Key);//添加跟结点的关键字进容器
+        inorder(root->rchild);
+    }
+    void levelorder(BinarySearchTreeNode<int>* root)//递归算法进行层序遍历
+    {
+        queue<BinarySearchTreeNode<int>*> Q;
+        Q.push(root);//跟结点入队
+        while (!Q.empty())
+        {
+            BinarySearchTreeNode<int>* tmp = Q.front();//tmp保存队首元素
+            Q.pop();//本身元素出队
+            count1++;
+            tmp->num = count1;
+            if (tmp->lchild != nullptr)//先左后右，有则进队
+            {
+                Q.push(tmp->lchild);
+            }
+            if (tmp->rchild != nullptr)
+            {
+                Q.push(tmp->rchild);
+            }
+        }
+    }
+    int BinaryTreeHigh(BinarySearchTreeNode<int>* root)//得到二叉树的高度，用递归算法，递归比较左右子树高度，最后二叉树的高度就是高的+1
+    {
+        if (root == NULL)
+        {
+            return 0;
+        }
+        int ret1 = BinaryTreeHigh(root->lchild);
+        int ret2 = BinaryTreeHigh(root->rchild);
+        return ret1 > ret2 ? ret1 + 1 : ret2 + 1;
+    }
+    int IsBlancedTree_R(BinarySearchTreeNode<int>* root)//也用递归算法判断树是否为平衡二叉树，如果是就返回1，否则返回0
+    {
+       
+        //平衡二叉树是指以当前结点为根的左右子树高度差的绝对值不得超过1
+        if (root == NULL) //空树是平衡二叉树
+            return 1;
+        int right = BinaryTreeHigh(root->lchild);
+        int left = BinaryTreeHigh(root->rchild);
+        int gap = right - left;
+        if (gap > 1 || gap < -1)
+            return 0;
+        //利用递归判断左右子树
+        return IsBlancedTree_R(root->lchild) && IsBlancedTree_R(root->rchild);
+    }
+    BinarySearchTreeNode<int>* tobalance(int l, int r) {
+        if (l > r) return nullptr;
+        int mid = (l + r) / 2;
+        BinarySearchTreeNode<int>* root =new BinarySearchTreeNode<int>(nums[mid]);//为了使树保持平衡，从中间位置开始安排左右孩子
+        root->lchild = tobalance(l, mid - 1);
+        root->rchild = tobalance(mid + 1, r);//用递归算法再对两边分别平衡建立
+        return root;//返回跟结点
+    }
+    BinarySearchTreeNode<int>* balanceBST(BinarySearchTreeNode<int>* root) {
+        inorder(root);//先将树中序遍历存到容器内
+        return tobalance(0, nums.size() - 1);//然后调用tobalance函数进行平衡建立
+    }
+};
+int main()
+{
+    BinarySearchTree<int> fsctree;//创建树
+    int length,b;
+    cin >> length;//输入结点个数
+    for (int i = 0; i < length; i++)//for循环逐点插入法创建二叉搜索树
+    {
+        cin >> b;
+        fsctree.insert(b);
+    }
+    Solution workout;//创建solution类来分解解答实验问题
+    for(int i=1 ;i<=length;i++)//遍历输出按逐点插入法的二叉搜索树
+    {
+        fsctree.find(i);
+    }
+    
+    if (workout.IsBlancedTree_R(fsctree.root) == 0)//如果不是avl树则转化成avl树，然后再
+    {
+        
+        BinarySearchTree<int> avltree;//新建一个树来存转化完的avl树
+        avltree.root =workout.balanceBST(fsctree.root);
+        for(int i=0;i<workout.nums.size();i++){//输出关键字中序遍历对应关键字的升序排列
+            cout<<workout.nums[i]<<" ";
+            
+        }
+        Solution workout1;
+        cout << "False" << endl;
+        workout1.levelorder(avltree.root);
+        for (int i = 1; i <=length; i++)
+        {
+            avltree.find(i);
+        }
+    }
+    else//如果是avl树则遍历输出结点
+    {
+        cout<<"true"<<endl;
+        for(int i=0;i<workout.nums.size();i++){//
+            cout<<workout.nums[i]<<" ";
+            
+        }
+        Solution workout1;
+        workout1.levelorder(fsctree.root);
+        for (int i = 1; i <=length; i++)//循环输出结点
+        {
+            fsctree.find(i);
+        }
+    }
+    return 0;
+}

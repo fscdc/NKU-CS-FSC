@@ -1,0 +1,186 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+class node {
+public:
+    int num;
+    node* next;
+    node(int i) {
+        num = i;
+        next = nullptr;
+    }
+    node() {
+        num = 0;
+        next = nullptr;
+    }
+};
+class listone {
+public:
+    node* head;
+    node* tail;
+    listone() {
+        head = new node(0);
+        tail = head;
+    }
+    void insertone(int i);
+    void removeone(int i);
+    void reverseone(listone l);
+};
+class listtwo {
+public:
+    node* head;
+    node* tail;
+    listtwo() {
+        head=new node(0);
+        tail=head;
+        tail->next = head;
+    }
+    void inserttwo(int i);
+    void reversetwo(listtwo l);
+};
+void listone::insertone(int i) {
+    node* temp = new node(i);
+    if (head == tail) {
+        head->next = temp;
+        tail = temp;
+    }
+    else {
+        tail->next = temp;
+        tail = temp;
+    }
+}
+void listtwo::inserttwo(int i) {
+    node* temp = new node(i);
+    if (head == tail) {
+        head->next = temp;
+        tail = temp;
+    }
+    else {
+        tail->next = temp;
+        tail = temp;
+        tail->next = head;
+    }
+}
+void listone::removeone(int i) {
+    node* temp = head;
+    if (i == head->next->num) {
+        head->next = head->next->next;
+        return ;
+    }
+    while (temp->next->next != nullptr) {
+        if (temp->next->num == i) {
+            temp->next = temp->next->next;
+            return ;
+        }
+        temp = temp->next;
+    }
+    if(temp->next->num==i){
+        temp->next=nullptr;
+    }
+}
+void listone::reverseone(listone l) {
+    node* p = head->next;
+    node* q = p->next;
+    
+    p->next=nullptr;
+    node* r=nullptr;
+    while (q != nullptr) {
+        r = q;
+        q = r->next;
+        r->next=p;
+        p=r;
+    }
+   head->next=r;
+    
+    node* lin=head->next;
+    while(lin!=nullptr){
+        cout<<lin->num<<" ";
+        lin=lin->next;
+    }
+}
+void listtwo::reversetwo(listtwo l) {
+    node* p = head->next;
+    node* q = p->next;
+    tail=p;
+    node* r=nullptr;
+    while (q != head) {
+        r = q;
+        q = r->next;
+        r->next=p;
+        p=r;
+    }
+    head->next=r;
+    tail->next=head;
+    node* lin=head->next;
+    while(lin!=head){
+        cout<<lin->num<<" ";
+        lin=lin->next;
+    }
+    }
+int main() {
+    listone one;
+    listtwo two;
+    int tmp,lenone,i,lentwo;
+    cout<<"input length of listone"<<endl;
+    cin>>lenone;
+    cout<<"input listone（not same one）:"<<endl;
+        for(i=1;i<=lenone;i++){
+            cin>>tmp;
+            one.insertone(tmp);
+        }
+    
+    cout<<"input length of listtwo"<<endl;
+    cin>>lentwo;
+    cout<<"input listtwo（not same one）:"<<endl;
+    for(i=1;i<=lentwo;i++){
+                cin>>tmp;
+                two.inserttwo(tmp);
+            }
+    cout<<"output reversed listone:";
+    one.reverseone(one);
+    cout<<endl;
+    cout<<"output reversed listtwo:";
+    two.reversetwo(two);
+    cout << endl;
+   
+    node* temp1=two.head->next;
+    for(int i=0;i<lentwo;i++,temp1=temp1->next){
+        one.removeone(temp1->num);
+        
+    }
+    cout<<"output deleted listone:";
+    node* lin = one.head->next;
+    while (lin!=nullptr) {
+        cout << lin->num << " ";
+        lin = lin->next;
+    }
+    cout<<endl;
+    
+    int lenonet=0;
+    node* temp0=one.head->next;
+    while(temp0!=nullptr){
+        lenonet++;
+        temp0=temp0->next;
+    }
+    if(lenonet==0){
+        cout<<"deleted list is empty"<<endl;
+        return 0;
+    }
+    cout<<"intput number of the num you want to find"<<endl;
+    int k;
+    cin>>k;
+    if(k>lenonet){
+        cout<<"wrong input"<<endl;
+    }
+    else{
+    int m;
+    m=lenonet-k+1;
+    node* temp3=one.head;
+    for(int n=0;n<m;n++){
+        temp3=temp3->next;
+    }
+    cout<<"output the aim num"<<endl;
+    cout<<temp3->num<<endl;
+    }
+    return 0;
+}

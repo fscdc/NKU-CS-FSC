@@ -1,0 +1,270 @@
+#include<iostream>
+#include<queue>
+#include<cmath>
+#include<cstring>
+using namespace std;
+typedef char ElemType;
+typedef struct BiNode
+{
+    ElemType data;
+    struct BiNode* lchild;
+    struct BiNode* rchild;
+    BiNode()
+    {
+        data=0;
+        lchild=nullptr;
+        rchild=nullptr;
+    }
+}BiNode, * BiTree;
+
+
+
+void CreateBiTreeLevel(BiTree &T)
+{
+    char rootdata;
+    cin >>rootdata;
+    T->data = rootdata;
+    queue<BiNode*>Q;
+    Q.push(T);
+
+    while (!Q.empty())
+    {
+        char lchilddata;
+        
+        if (cin.get() == '\n')
+        {
+            break;
+        }
+        cin >> lchilddata;
+        if (lchilddata == '#')
+        {
+            Q.front()->lchild =nullptr;
+        }
+        else
+        {
+            Q.front()->lchild = new BiNode;
+            Q.front()->lchild->data = lchilddata;
+            Q.push(Q.front()->lchild);
+        }
+       
+        char rchilddata;
+        
+        if (cin.get() == '\n')
+        {
+            break;
+        }
+        cin >> rchilddata;
+        if (rchilddata == '#')
+        {
+            Q.front()->rchild =nullptr;
+        }
+        else
+        {
+            Q.front()->rchild = new BiNode;
+            Q.front()->rchild->data = rchilddata;
+            Q.push(Q.front()->rchild);
+        }
+        
+        Q.pop();
+       
+        
+    }
+}
+bool IsCompleteBiTree(BiTree& T)
+{
+    queue<BiNode*>Q;
+    Q.push(T);
+    while (!Q.empty())
+    {
+
+        if (Q.front()->lchild ==nullptr && Q.front()->rchild != nullptr)
+        {
+            return 0;
+        }
+        else {
+            if (Q.front()->lchild !=nullptr && Q.front()->rchild != nullptr)
+        {
+            Q.push(Q.front()->lchild);
+            Q.push(Q.front()->rchild);
+            Q.pop();
+        }
+        else
+        {
+            if (Q.front()->lchild !=nullptr)
+            {
+                Q.push(Q.front()->lchild);
+            }
+           
+            Q.pop();
+           
+            while (!Q.empty())
+            {
+                if (Q.front()->lchild !=nullptr || Q.front()->rchild != nullptr)
+                {
+                    return 0;
+                }
+                else{}
+                Q.pop();
+            }
+            return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+int GetLevel(BiTree& T, char x)
+{
+    queue<BiNode*>Q;
+    BiNode* flag = new BiNode;
+    flag->data = '^';
+    Q.push(T);
+    Q.push(flag);
+    int level = 1;
+    while (!Q.empty())
+    {
+        if (Q.front()->data == x){
+        
+            return level;
+        }
+        else if (Q.front()->data == '^'){
+              
+                Q.pop();
+            if (Q.empty()){
+              
+                break;
+            }
+            else{
+            
+                level++;
+                Q.push(flag);
+            }
+        }
+        else{
+            if (Q.front()->lchild != nullptr)
+            {
+                Q.push(Q.front()->lchild);
+            }
+            if (Q.front()->rchild != nullptr)
+            {
+                Q.push(Q.front()->rchild);
+            }
+            Q.pop();
+        }
+    }
+    return 1;
+}
+BiTree& Transform(BiTree& T)
+{
+    char arr[100];
+    queue<BiNode*>Q;
+    Q.push(T);
+    int index = 0;
+    while (!Q.empty())
+    {
+        arr[index] = Q.front()->data;
+        index++;
+        if (Q.front()->lchild !=nullptr)
+        {
+            Q.push(Q.front()->lchild);
+        }
+        if (Q.front()->rchild !=nullptr)
+        {
+            Q.push(Q.front()->rchild);
+        }
+        Q.pop();
+    }
+
+    BiTree TransformationTree = new BiNode;
+    TransformationTree->data = arr[0];
+    queue<BiNode*>QQ;
+    QQ.push(TransformationTree);
+    for (int i = 1; i <= index - 1 && !QQ.empty(); i = i + 2)
+    {
+        //考虑一下有没有元素可以分给右孩子
+        QQ.front()->lchild = new BiNode;
+        QQ.front()->lchild->data = arr[i];
+        QQ.push(QQ.front()->lchild);
+
+        if (i >= index - 1)
+        {
+            QQ.front()->rchild = nullptr;
+        }
+        else
+        {
+            QQ.front()->rchild = new BiNode;
+            QQ.front()->rchild->data = arr[i + 1];
+        }
+        QQ.push(QQ.front()->rchild);
+
+        QQ.pop();
+    }
+    return TransformationTree;
+
+
+}
+void LevelOrderByQueue(BiTree& T)
+{
+    queue<BiNode*>Q;
+    BiNode* flag = new BiNode;
+    flag->data = '^';
+    Q.push(T);
+    Q.push(flag);
+    while (!Q.empty())
+    {
+        if (Q.front()->data == '^')
+        {
+            Q.pop();
+            cout << endl;
+            if (!Q.empty())
+            {
+                Q.push(flag);
+            }
+        }
+        else
+        {
+            cout << Q.front()->data << " ";
+
+            if (Q.front()->lchild != NULL)
+            {
+                Q.push(Q.front()->lchild);
+            }
+            if (Q.front()->rchild != NULL)
+            {
+                Q.push(Q.front()->rchild);
+            }
+            Q.pop();
+        }
+    }
+}
+
+int main()
+{
+    BiTree MyTree = new BiNode;
+
+    cout << "input tree " << endl;
+
+    CreateBiTreeLevel(MyTree);
+    if (IsCompleteBiTree(MyTree))
+    {
+        cout<< "is complete tree" <<endl;
+    }
+    else
+    {
+        cout<< "is not complete tree " <<endl;
+    }
+
+    cout << "input the data you want to find" << endl;
+    char inputdata;
+    cin >> inputdata;
+    cout << "the depth of the data:" << GetLevel(MyTree, inputdata) << endl;
+
+
+    if (!IsCompleteBiTree(MyTree))
+    {
+        cout << "the transformed tree is:" << endl;
+        MyTree = Transform(MyTree);
+        LevelOrderByQueue(MyTree);
+    }
+    return 0;
+}

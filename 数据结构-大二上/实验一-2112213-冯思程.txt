@@ -1,0 +1,82 @@
+//
+//  main.cpp
+//  hellomac
+//
+//  Created by 冯思程 on 2021/9/27.
+//
+
+#include<iostream>
+#include<cmath>
+#include<cstring>
+#include<iomanip>
+#include<algorithm>
+using namespace std;
+void quicksort(int a[],int begin,int end){
+    int i,j;
+    i=begin;
+    j=end;
+    if(i>=j){
+        return;
+    }
+    while(i<j){
+        while(i<j&&a[j]>=a[begin]){
+            j--;
+            
+        }
+        while(i<j&&a[i]<=a[begin]){
+            i++;
+        }
+        if(i<j){
+            swap(a[i],a[j]);
+        }
+    }
+    swap(a[begin],a[i]);
+    quicksort(a,begin,i-1);
+    quicksort(a,i+1,end);
+}
+void reorder(int a[],int length){
+    for(int i=0;i<length;i++){
+        for(int j=length-1;j>i;j--){
+            if(a[i]%2==0&&a[j]%2==1)
+            {
+                swap(a[i],a[j]);
+            }
+            
+        }
+    }
+}
+int main(){
+    int length;
+    cin>>length;
+    if(length<=0){
+        cout<<"wrong input"<<endl;
+    }
+    else{
+    int a[100];
+    for(int k=0;k<length;k++){
+        cin>>a[k];
+        if(a[k]<0){
+            cout<<"wrong input"<<endl;
+            cout<<"please stop!"<<endl;
+            cout<<"try one more time"<<endl;
+            return 0;
+        }
+        
+    }
+    reorder(a,length);
+    int sum=0;
+    for(int m=0;m<length;m++){
+        if(a[m]%2==1){
+            sum+=1;
+        }
+    }
+    quicksort(a,0,sum-1);
+    quicksort(a,sum,length-1);
+    for(int l=0;l<length;l++){
+        cout<<a[l]<<" ";
+        
+    }
+    return 0;
+    
+    }
+}
