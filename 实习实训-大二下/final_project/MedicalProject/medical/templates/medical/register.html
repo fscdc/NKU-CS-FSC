@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <!-- 引入图标样式 -->
+    <link href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.5.5/css/simple-line-icons.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'css/components.chunk.css' %}">
+    <link rel="stylesheet" href="{% static 'css/umi.css' %}">
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#343a40">
+
+    <title>智慧医疗问答系统</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="page-container">
+            <main id="main-container">
+                <div class="v2board-background" style="background-image: url(&quot;https://ねこはしずく.moe/69.php&quot;);"></div>
+                <div class="no-gutters v2board-auth-box">
+                    <div class="" style="max-width: 450px; width: 100%; margin: auto;">
+                        <div class="mx-2 mx-sm-0">
+                            <div class="block block-rounded block-transparent block-fx-pop w-100 mb-0 overflow-hidden bg-image" style="box-shadow: rgba(0, 0, 0, 0.05) 0px 0.5rem 2rem;">
+                                <div class="row no-gutters">
+                                    <div class="col-md-12 order-md-1 bg-white">
+                                        <div class="block-content block-content-full px-lg-4 py-md-4 py-lg-4">
+                                            <div class="mb-3 text-center"><a class="font-size-h1" href="javascript:void(0);"><span class="text-dark">智慧医疗问答系统</span></a>
+                                                <p class="font-size-sm text-muted mb-3">智慧医疗问答系统</p>
+                                            </div>
+                                            <div>
+                                                <!-- 用户名和密码表单 -->
+                                                <form method="post" action="/medical/register/">
+                                                    <div class="form-group"><input type="text" class="form-control form-control-alt" name="username" placeholder="用户名"></div>
+                                                    <div class="form-group"><input type="password" class="form-control form-control-alt" name="password" placeholder="密码"></div>
+                                                    <div class="form-group mb-0"><button type="submit" class="btn btn-block btn-primary font-w400"><span><i class="si si-emoticon-smile mr-1"></i>注册</span></button></div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-left bg-gray-lighter p-3 px-4"><a class="font-size-sm text-muted" href="/medical/login/">返回登入</a><span class="v2board-login-i18n-btn ant-dropdown-trigger"><i class="si si-globe pr-1"></i><span class="font-size-sm text-muted" style="vertical-align: text-bottom;">简体中文</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState == 'hidden') {
+                normal_title = document.title;
+                document.title = '呜哇';
+            } else document.title = normal_title;
+        });
+    </script>
+</body>
+
+</html>

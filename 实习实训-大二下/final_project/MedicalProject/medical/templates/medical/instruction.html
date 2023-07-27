@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <!-- 引入图标样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.5.5/css/simple-line-icons.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'css/components.chunk.css' %}">
+    <link rel="stylesheet" href="{% static 'css/umi.css' %}">
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#343a40">
+
+    <title>智慧医疗问答系统</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="page-container" class="null sidebar-o sidebar-dark page-header-dark side-scroll page-header-fixed main-content-boxed side-trans-enabled false">
+            <div class="v2board-nav-mask" style="display: none;"></div>
+            <nav id="sidebar">
+                <div class="smini-hidden bg-header-dark">
+                    <div class="content-header justify-content-lg-center bg-white-10"><a class="font-size-lg text-white" href="/medical/homepage/"><span class="text-white-75">智慧医疗问答系统</span></a>
+                        <div class="d-lg-none"><a class="text-white ml-2" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0);"><i class="fa fa-times-circle"></i></a></div>
+                    </div>
+                </div>
+                <div class="content-side content-side-full">
+                    <ul class="nav-main">
+                        <li class="nav-main-heading">欢迎光临</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/homepage/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">主页</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link active"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">使用说明</span></a></li>
+                        <li class="nav-main-heading">功能</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/guess/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">猜你所想</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/microscope/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">病痛显微镜</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiry/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiryplus/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾（Plus Beta）</span></a></li>
+                        <li class="nav-main-heading">用户</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/user/"><i class="nav-main-link-icon si si-users"></i><span class="nav-main-link-name">用户中心</span></a></li>
+                        <li class="nav-main-heading">关于</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/illustration/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">说明</span></a></li>
+                    </ul>
+                </div>
+                <div class="v2board-copyright">智慧医疗问答系统 v1.0.0</div>
+            </nav>
+            <header id="page-header">
+                <div class="content-header">
+                    <div class="sidebar-toggle" style="display: none;"><button type="button" class="btn btn-primary mr-1 d-lg-none"><i class="fa fa-fw fa-bars"></i></button></div>
+                    <div class="v2board-container-title text-white">使用说明</div>
+                    <div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" id="user-dropdown-btn" class="btn btn-primary dropdown-button">
+                                <i class="far fa fa-user-circle"></i>
+                                <span class="d-none d-lg-inline ml-1">{{ user_info.username }}</span>
+                                <i class="fa fa-fw fa-angle-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right p-0 false">
+                                <div class="p-2">
+                                    <a class="dropdown-item" href="/medical/user/">
+                                        <i class="far fa-fw fa-user mr-1"></i> 个人中心
+                                    </a>
+                                    <a class="dropdown-item" href="/medical/login/">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> 登出
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main id="main-container">
+                <div class="content content-full">
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">登录与注册问题</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        本站支持外来用户免费注册，只需要在登录界面点击注册即跳转注册界面，输入用户名和密码合法后即可成功注册，如果出现提示 Username already exists 说明用户名重复请更换用户名后重新注册。如图所示：<br><br>
+                                        <img src="https://i.imgur.com/7QwKtjj.png" alt="Image Description" width="50%" height="50%"><br><br>
+                                        <img src="https://i.imgur.com/YB196g8.png" alt="Image Description" width="50%" height="50%"><br><br> 现在，输入用户名和密码后就可以登陆了！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">功能</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                    </p>
+                                        <b>猜你所想</b>：针对用户输入的模糊病名进行智能匹配，可以选择返回疾病的个数，会按照相似程度的优先级返回给用户准确疾病名字的列表，然后用户可以通过点击链接跳转到病痛显微镜进行更详细信息的查询。
+                                    </p>
+                                    <p>
+                                        <b>病痛显微镜</b>：针对输入的准确疾病名称进行 Neo4j 智能查询，通过查询跳转到该疾病的详细信息页。
+                                    </p>
+                                    <p>
+                                        <b>龙灵问疾</b>：用户可以分别输入，共有 3 个输入块（病名、药品、症状）限制：用空格逗号顿号分开不同实体。通过对信息的智能匹配，按优先级返回用户可能患有的疾病。这里有两个可选项分别可以选择两种不同的输入格式：关键字和文本。
+                                    </p>
+                                    <p>
+                                        <b>龙灵问疾（Plus Beta）</b>：用户可以任意输入一段自己症状的文本，智能的生成出一个疾病列表,也是按照优先级排列输出，然后可以跳转到对应的疾病详情页。这里的可选项是算法，一个是计数算法一个是向量算法（这里可以自己尝试一下验证适合的算法哦）（类似 ChatGPT）
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">版本问题</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        本项目支持多版本操作系统，以及多种分辨率，在多个浏览器均可运行，如有版本冲突问题，请移步<b>关于</b>联系我们解决，或者可自行调整浏览器版本
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <!-- 引入图标样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.5.5/css/simple-line-icons.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'css/components.chunk.css' %}">
+    <link rel="stylesheet" href="{% static 'css/umi.css' %}">
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="{% static 'js/echarts.min.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#343a40">
+
+    <title>智慧医疗问答系统</title>
+</head>
+
+<body>
+    <script defer>
+        // 获取当前日期并更新到页面上
+        function updateDate() {
+            const currentDate = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            };
+            const formattedDate = currentDate.toLocaleDateString('zh-CN', options);
+            document.getElementById('current-date').textContent = formattedDate;
+        }
+
+        // 实时更新日期
+        setInterval(updateDate, 300); // 每隔300ms更新一次日期
+    </script>
+
+    <div id="root">
+        <div id="page-container" class="null sidebar-o sidebar-dark page-header-dark side-scroll page-header-fixed main-content-boxed side-trans-enabled false">
+            <div class="v2board-nav-mask" style="display: none;"></div>
+            <nav id="sidebar">
+                <div class="smini-hidden bg-header-dark">
+                    <div class="content-header justify-content-lg-center bg-white-10"><a class="font-size-lg text-white" href="/medical/homepage/"><span class="text-white-75">智慧医疗问答系统</span></a>
+                        <div class="d-lg-none"><a class="text-white ml-2" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0);"><i class="fa fa-times-circle"></i></a></div>
+                    </div>
+                </div>
+                <div class="content-side content-side-full">
+                    <ul class="nav-main">
+                        <li class="nav-main-heading">欢迎光临</li>
+                        <li class="nav-main-item"><a class="nav-main-link active"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">主页</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/instruction/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">使用说明</span></a></li>
+                        <li class="nav-main-heading">功能</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/guess/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">猜你所想</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/microscope/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">病痛显微镜</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiry/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiryplus/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾（Plus Beta）</span></a></li>
+                        <li class="nav-main-heading">用户</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/user/"><i class="nav-main-link-icon si si-users"></i><span class="nav-main-link-name">用户中心</span></a></li>
+                        <li class="nav-main-heading">关于</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/illustration/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">说明</span></a></li>
+
+                    </ul>
+                </div>
+                <div class="v2board-copyright">智慧医疗问答系统 v1.0.0</div>
+            </nav>
+            <header id="page-header">
+                <div class="content-header">
+                    <div class="sidebar-toggle" style="display: none;"><button type="button" class="btn btn-primary mr-1 d-lg-none"><i class="fa fa-fw fa-bars"></i></button></div>
+                    <div class="v2board-container-title text-white">主页</div>
+                    <div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn btn-primary dropdown-button">
+                                <i class="far fa fa-user-circle"></i>
+                                <span class="d-none d-lg-inline ml-1">{{ user_info.username }}</span>
+                                <i class="fa fa-fw fa-angle-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right p-0 false">
+                                <div class="p-2">
+                                    <a class="dropdown-item" href="/medical/user/">
+                                        <i class="far fa-fw fa-user mr-1"></i> 用户中心
+                                    </a>
+                                    <a class="dropdown-item" href="/medical/login/">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> 登出
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 用于显示消息 -->
+            <script>
+                function showDialog() {
+                    alert("欢迎 (๑>؂<๑），下面是预览的知识图谱哦，刷新网页可以随机到不同的部分！");
+                }
+            </script>
+
+            <main id="main-container">
+                <div class="content content-full">
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-12 mb-sm-4">
+                            <div tabindex="-1" style="width: 100%; display: inline-block;">
+                                <a class="block block-rounded bg-image mb-0 v2board-bg-pixels" href="javascript:void(0)" style="background-image: url(&quot;https://ねこはしずく.moe/69.php&quot;); background-size: cover;" onclick="showDialog()">
+                                    <div class="block-content bg-black-50">
+                                        <div class="mb-5 mb-sm-7 d-sm-flex justify-content-sm-between align-items-sm-center">
+                                            <p><span class="badge badge-danger p-2 text-uppercase">哈喽</span></p>
+                                            <p><span class="badge badge-danger p-2 text-uppercase" id="current-date"></span></p>
+                                        </div>
+                                        <p class="font-size-lg text-white mb-1">欢迎来到 智慧医疗问答系统</p>
+                                        <p class="font-w600 text-white-75" id="update-date"></p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 网页简介 -->
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-12 mb-sm-4">
+                            <div class="block block-rounded js-appear-enabled" style="overflow: hidden;">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">网站简介</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        欢迎来到智慧医疗问答系统，在这里，您可以利用我们构建的医疗知识图谱，对您的问题进行回答。<b>下面</b>是一个我们的示意知识图谱模型，它取自于我们完整知识图谱的一部分，您可以用鼠标拖动其中的节点，了解我们的模型，而且可以通过点击<b>色块</b>隐藏特定label的节点。在每一次网站加载时，都会有不同的模型被随机采样哦！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ECharts 绘制 Graph -->
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-12 mb-sm-4">
+                            <div class="block block-rounded js-appear-enabled" style="overflow: hidden;">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">智慧医疗关系图谱</h3>
+                                </div>
+
+                                <div id="main" style="width: 100%; height: 500%;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 保证在浏览器窗口大小变化时刷新 ECharts 图表 -->
+                    <script>
+                        // 获取 ECharts 实例
+                        var chart = echarts.init(document.getElementById('main'));
+
+                        window.addEventListener('resize', function() {
+                            chart.resize();
+                        });
+                    </script>
+
+                    <script>
+                        var neo4j_data = JSON.parse('{{ neo4j_data|escapejs }}');
+                        var data = neo4j_data['data']
+                        console.log("data:", data);
+                        var links = neo4j_data['links']
+                        console.log("links:", links)
+
+                        var myChart = echarts.init(document.getElementById('main'));
+                        var categories = [{
+                            name: "检查"
+                        }, {
+                            name: "治疗方式"
+                        }, {
+                            name: "疾病"
+                        }, {
+                            name: "症状"
+                        }, {
+                            name: "科室"
+                        }, {
+                            name: "药物"
+                        }, {
+                            name: "食物"
+                        }];
+
+                        var option;
+
+                        // 如果 ECharts 还在加载，则显示加载动画
+                        myChart.showLoading();
+
+                        setTimeout(function() {
+                            // 等待数据加载
+                            myChart.hideLoading();
+
+                            option = {
+                                legend: [{
+                                    // selectedMode: 'single',
+                                    data: categories.map(function(a) {
+                                        return a.name;
+                                    })
+                                }],
+                                series: [{
+                                    type: 'graph', // 类型:关系图
+                                    layout: 'force', // 图的布局，类型为力导图
+                                    symbolSize: 50, // 调整节点的大小
+
+                                    edgeSymbol: ['circle', 'arrow'],
+                                    edgeSymbolSize: [2, 10],
+                                    edgeLabel: {
+                                        normal: {
+                                            textStyle: {
+                                                fontSize: 20
+                                            }
+                                        }
+                                    },
+                                    force: {
+                                        edgeLength: [100, 200],
+                                        repulsion: 200,
+                                        gravity: 0.2,
+                                        // initLayout: 'circular'
+                                    },
+                                    draggable: true,
+                                    lineStyle: {
+                                        normal: {
+                                            width: 1,
+                                            color: '#000000',
+                                        }
+                                    },
+                                    label: {
+                                        normal: {
+                                            show: true,
+                                            textStyle: {}
+                                        },
+                                    },
+                                    edgeLabel: {
+                                        normal: {
+                                            show: true,
+                                            textStyle: {
+                                                fontSize: 10
+                                            },
+                                            // 获取边的信息
+                                            formatter: (params) => {
+                                                return params.data['name']
+                                            }
+                                        }
+                                    },
+                                    // 数据
+                                    data: data,
+                                    links: links,
+                                    categories: categories,
+                                    color: ['#E74C3C', '#3498DB', '#F1C40F', '#27AE60', '#fb8b05', '#bacf65', '#9B59B6'],
+                                    autoCurveness: 0.01, // 多条边的时候，自动计算曲率
+                                }]
+                            };
+
+                            if (option && typeof option == 'object') {
+                                myChart.setOption(option);
+                            }
+                        }); // 等待数据加载完成
+                    </script>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

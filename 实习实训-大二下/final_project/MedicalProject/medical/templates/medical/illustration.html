@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load static %}
+    <!-- 引入图标样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/simple-line-icons@2.5.5/css/simple-line-icons.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="{% static 'css/components.chunk.css' %}">
+    <link rel="stylesheet" href="{% static 'css/umi.css' %}">
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
+    <meta name="theme-color" content="#343a40">
+
+    <title>智慧医疗问答系统</title>
+</head>
+
+<body>
+    <div id="root">
+        <div id="page-container" class="null sidebar-o sidebar-dark page-header-dark side-scroll page-header-fixed main-content-boxed side-trans-enabled false">
+            <div class="v2board-nav-mask" style="display: none;"></div>
+            <nav id="sidebar">
+                <div class="smini-hidden bg-header-dark">
+                    <div class="content-header justify-content-lg-center bg-white-10"><a class="font-size-lg text-white" href="/medical/homepage/"><span class="text-white-75">智慧医疗问答系统</span></a>
+                        <div class="d-lg-none"><a class="text-white ml-2" data-toggle="layout" data-action="sidebar_close" href="javascript:void(0);"><i class="fa fa-times-circle"></i></a></div>
+                    </div>
+                </div>
+                <div class="content-side content-side-full">
+                    <ul class="nav-main">
+                        <li class="nav-main-heading">欢迎光临</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/homepage/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">主页</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/instruction/"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">使用说明</span></a></li>
+                        <li class="nav-main-heading">功能</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/guess/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">猜你所想</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/microscope/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">病痛显微镜</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiry/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾</span></a></li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/inquiryplus/"><i class="nav-main-link-icon si si-question"></i><span class="nav-main-link-name">龙灵问疾（Plus Beta）</span></a></li>
+                        <li class="nav-main-heading">用户</li>
+                        <li class="nav-main-item"><a class="nav-main-link false" href="/medical/user/"><i class="nav-main-link-icon si si-users"></i><span class="nav-main-link-name">用户中心</span></a></li>
+                        <li class="nav-main-heading">关于</li>
+                        <li class="nav-main-item"><a class="nav-main-link active"><i class="nav-main-link-icon si si-book-open"></i><span class="nav-main-link-name">说明</span></a></li>
+                    </ul>
+                </div>
+                <div class="v2board-copyright">智慧医疗问答系统 v1.0.0</div>
+            </nav>
+            <header id="page-header">
+                <div class="content-header">
+                    <div class="sidebar-toggle" style="display: none;"><button type="button" class="btn btn-primary mr-1 d-lg-none"><i class="fa fa-fw fa-bars"></i></button></div>
+                    <div class="v2board-container-title text-white">说明</div>
+                    <div>
+                        <div class="dropdown d-inline-block">
+                            <button type="button" class="btn btn-primary dropdown-button">
+                                <i class="far fa fa-user-circle"></i>
+                                <span class="d-none d-lg-inline ml-1">{{ user_info.username }}</span>
+                                <i class="fa fa-fw fa-angle-down ml-1"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right p-0 false">
+                                <div class="p-2">
+                                    <a class="dropdown-item" href="/medical/user/">
+                                        <i class="far fa-fw fa-user mr-1"></i> 个人中心
+                                    </a>
+                                    <a class="dropdown-item" href="/medical/login/">
+                                        <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> 登出
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main id="main-container">
+                <div class="content content-full">
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">项目开发团队</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        神龙无敌队（冯思程、郭昱杰、陈冠修、杜旖芃）
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">关于项目</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        我们的智能医疗问答系统是一个旨在为用户提供关于各类疾病的准确、可靠信息的在线平台。我们致力于帮助用户获得有关疾病预防、诊断、治疗和康复的专业知识，并为用户解答与健康相关的各类疑惑。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">使命和愿景</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        我们的使命是通过技术创新和医疗专业知识的结合，为广大用户提供及时、全面、可信赖的医疗咨询服务，提高用户对疾病的认知水平，促进公众健康和福祉。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">隐私保护</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        我们重视用户的隐私，严格遵守相关法律法规，保护用户的个人信息安全。我们不会泄露、出售或分享用户的个人信息给第三方，除非得到用户的明确授权或法律要求。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">免责声明</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        尽管我们的团队努力确保提供准确、可靠的医疗信息，但我们不对用户因使用我们的系统而产生的任何行为、决策或结果负责。在做出任何医疗决策之前，请咨询专业医生的意见。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">联系方式</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        如果您对我们的系统有任何疑问、建议或合作意向，欢迎通过以下方式与我们联系：
+                                    </p>
+                                    <p>
+                                        电子邮件：fscydx888@163.com<br> 客服电话：18822623404
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-3 mb-md-0">
+                        <div class="col-xl-12">
+                            <div class="block block-rounded js-appear-enabled">
+                                <div class="block-header block-header-default">
+                                    <h3 class="block-title">开源说明</h3>
+                                </div>
+                                <div class="block-content">
+                                    <p>
+                                        本项目愿意遵守互联网的开源协议，如有需要，请访问：<a href="https://github.com/fscdc/final_project">Git项目</a>
+                                    </p>
+
+                                    <div class="section">
+                                        <p>
+                                            再次感谢您使用我们的智能医疗问答系统，我们将竭诚为您提供优质的医疗服务！
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>
