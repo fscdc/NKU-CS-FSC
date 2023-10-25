@@ -1,0 +1,66 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=2344, cgraph_uid=1, symbol_order=0)
+
+
+Analyzing function body size: main/0
+
+IPA function summary for main/0
+  global time:     43.000000
+  self size:       17
+  global size:     17
+  min size:       0
+  self stack:      0
+  global stack:    0
+    size:6.000000, time:7.000000
+    size:2.000000, time:0.000000,  executed if:(not inlined)
+  calls:
+    printf/1 function body not available
+      freq:1.00 loop depth: 0 size: 3 time: 12
+    scanf/2 function body not available
+      freq:1.00 loop depth: 0 size: 3 time: 12
+    printf/1 function body not available
+      freq:1.00 loop depth: 0 size: 3 time: 12
+
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int k;
+  int D.2356;
+  int n.0_1;
+  int _11;
+
+  <bb 2> :
+  k_4 = 1000;
+  printf ("%d\n", k_4);
+  scanf ("%d", &n);
+  i_8 = 2;
+  f_9 = 1;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  f_13 = f_3 * i_2;
+  i_14 = i_2 + 1;
+
+  <bb 4> :
+  # i_2 = PHI <i_8(2), i_14(3)>
+  # f_3 = PHI <f_9(2), f_13(3)>
+  n.0_1 = n;
+  if (i_2 <= n.0_1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  printf ("%d\n", f_3);
+  _11 = 0;
+  n ={v} {CLOBBER};
+
+  <bb 6> :
+<L6>:
+  return _11;
+
+}
+
+

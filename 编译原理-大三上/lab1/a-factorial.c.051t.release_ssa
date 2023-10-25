@@ -1,0 +1,47 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=2344, cgraph_uid=1, symbol_order=0)
+
+Released 0 names, 0.00%, removed 0 holes
+int main ()
+{
+  int f;
+  int n;
+  int i;
+  int k;
+  int D.2356;
+  int n.0_1;
+  int _11;
+
+  <bb 2> :
+  k_4 = 1000;
+  printf ("%d\n", k_4);
+  scanf ("%d", &n);
+  i_8 = 2;
+  f_9 = 1;
+  goto <bb 4>; [INV]
+
+  <bb 3> :
+  f_13 = f_3 * i_2;
+  i_14 = i_2 + 1;
+
+  <bb 4> :
+  # i_2 = PHI <i_8(2), i_14(3)>
+  # f_3 = PHI <f_9(2), f_13(3)>
+  n.0_1 = n;
+  if (i_2 <= n.0_1)
+    goto <bb 3>; [INV]
+  else
+    goto <bb 5>; [INV]
+
+  <bb 5> :
+  printf ("%d\n", f_3);
+  _11 = 0;
+  n ={v} {CLOBBER};
+
+  <bb 6> :
+<L6>:
+  return _11;
+
+}
+
+

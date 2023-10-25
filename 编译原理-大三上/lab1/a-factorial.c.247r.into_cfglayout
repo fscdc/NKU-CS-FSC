@@ -1,0 +1,204 @@
+
+;; Function main (main, funcdef_no=0, decl_uid=2344, cgraph_uid=1, symbol_order=0)
+
+
+
+try_optimize_cfg iteration 1
+
+Removing jump 21.
+
+
+try_optimize_cfg iteration 2
+
+
+
+try_optimize_cfg iteration 1
+
+(note 4 0 2 2 [bb 2] NOTE_INSN_BASIC_BLOCK)
+(note 2 4 3 2 NOTE_INSN_FUNCTION_BEG)
+(insn 3 2 6 2 (parallel [
+            (set (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -8 [0xfffffffffffffff8])) [1 D.2360+0 S8 A64])
+                (unspec:DI [
+                        (mem/v/f:DI (const_int 40 [0x28]) [0 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_SET))
+            (set (scratch:DI)
+                (const_int 0 [0]))
+            (clobber (reg:CC 17 flags))
+        ]) "factorial.c":7:11 1159 {stack_protect_set_1_di}
+     (nil))
+(insn 6 3 7 2 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -12 [0xfffffffffffffff4])) [2 k+0 S4 A32])
+        (const_int 1000 [0x3e8])) "factorial.c":8:9 75 {*movsi_internal}
+     (nil))
+(insn 7 6 8 2 (set (reg:SI 85)
+        (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -12 [0xfffffffffffffff4])) [2 k+0 S4 A32])) "factorial.c":9:5 75 {*movsi_internal}
+     (nil))
+(insn 8 7 9 2 (set (reg:SI 4 si)
+        (reg:SI 85)) "factorial.c":9:5 75 {*movsi_internal}
+     (nil))
+(insn 9 8 10 2 (set (reg:DI 86)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7c8cade3f0 *.LC0>)) "factorial.c":9:5 74 {*movdi_internal}
+     (nil))
+(insn 10 9 11 2 (set (reg:DI 5 di)
+        (reg:DI 86)) "factorial.c":9:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7c8cade3f0 *.LC0>)
+        (nil)))
+(insn 11 10 12 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "factorial.c":9:5 77 {*movqi_internal}
+     (nil))
+(call_insn 12 11 13 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f7c8c9f4100 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) "factorial.c":9:5 824 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (nil)))))
+(insn 13 12 14 2 (parallel [
+            (set (reg:DI 87)
+                (plus:DI (reg/f:DI 19 frame)
+                    (const_int -24 [0xffffffffffffffe8])))
+            (clobber (reg:CC 17 flags))
+        ]) "factorial.c":11:5 210 {*adddi_1}
+     (nil))
+(insn 14 13 15 2 (set (reg:DI 4 si)
+        (reg:DI 87)) "factorial.c":11:5 74 {*movdi_internal}
+     (nil))
+(insn 15 14 16 2 (set (reg:DI 88)
+        (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7c8cade480 *.LC1>)) "factorial.c":11:5 74 {*movdi_internal}
+     (nil))
+(insn 16 15 17 2 (set (reg:DI 5 di)
+        (reg:DI 88)) "factorial.c":11:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC1") [flags 0x2]  <var_decl 0x7f7c8cade480 *.LC1>)
+        (nil)))
+(insn 17 16 18 2 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "factorial.c":11:5 77 {*movqi_internal}
+     (nil))
+(call_insn 18 17 19 2 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("*__isoc99_scanf") [flags 0x41]  <function_decl 0x7f7c8c9f4d00 scanf>) [0 __builtin_scanf S1 A8])
+            (const_int 0 [0]))) "factorial.c":11:5 824 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:DI (use (reg:DI 4 si))
+                (nil)))))
+(insn 19 18 20 2 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -20 [0xffffffffffffffec])) [2 i+0 S4 A32])
+        (const_int 2 [0x2])) "factorial.c":12:7 75 {*movsi_internal}
+     (nil))
+(insn 20 19 31 2 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -16 [0xfffffffffffffff0])) [2 f+0 S4 A64])
+        (const_int 1 [0x1])) "factorial.c":13:7 75 {*movsi_internal}
+     (nil))
+      ; pc falls through to BB 4
+(code_label 31 20 23 3 3 (nil) [1 uses])
+(note 23 31 24 3 [bb 3] NOTE_INSN_BASIC_BLOCK)
+(insn 24 23 25 3 (set (reg:SI 90)
+        (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -16 [0xfffffffffffffff0])) [2 f+0 S4 A64])) "factorial.c":15:11 75 {*movsi_internal}
+     (nil))
+(insn 25 24 26 3 (parallel [
+            (set (reg:SI 89)
+                (mult:SI (reg:SI 90)
+                    (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                            (const_int -20 [0xffffffffffffffec])) [2 i+0 S4 A32])))
+            (clobber (reg:CC 17 flags))
+        ]) "factorial.c":15:11 408 {*mulsi3_1}
+     (nil))
+(insn 26 25 27 3 (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -16 [0xfffffffffffffff0])) [2 f+0 S4 A64])
+        (reg:SI 89)) "factorial.c":15:11 75 {*movsi_internal}
+     (nil))
+(insn 27 26 28 3 (parallel [
+            (set (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                        (const_int -20 [0xffffffffffffffec])) [2 i+0 S4 A32])
+                (plus:SI (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                            (const_int -20 [0xffffffffffffffec])) [2 i+0 S4 A32])
+                    (const_int 1 [0x1])))
+            (clobber (reg:CC 17 flags))
+        ]) "factorial.c":16:11 209 {*addsi_1}
+     (nil))
+(code_label 28 27 29 4 2 (nil) [0 uses])
+(note 29 28 30 4 [bb 4] NOTE_INSN_BASIC_BLOCK)
+(insn 30 29 32 4 (set (reg:SI 82 [ n.0_1 ])
+        (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -24 [0xffffffffffffffe8])) [2 n+0 S4 A64])) "factorial.c":14:13 75 {*movsi_internal}
+     (nil))
+(insn 32 30 33 4 (set (reg:CCGC 17 flags)
+        (compare:CCGC (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                    (const_int -20 [0xffffffffffffffec])) [2 i+0 S4 A32])
+            (reg:SI 82 [ n.0_1 ]))) "factorial.c":14:13 11 {*cmpsi_1}
+     (nil))
+(jump_insn 33 32 34 4 (set (pc)
+        (if_then_else (le (reg:CCGC 17 flags)
+                (const_int 0 [0]))
+            (label_ref 31)
+            (pc))) "factorial.c":14:13 806 {*jcc}
+     (nil)
+ -> 31)
+(note 34 33 35 5 [bb 5] NOTE_INSN_BASIC_BLOCK)
+(insn 35 34 36 5 (set (reg:SI 91)
+        (mem/c:SI (plus:DI (reg/f:DI 19 frame)
+                (const_int -16 [0xfffffffffffffff0])) [2 f+0 S4 A64])) "factorial.c":21:5 75 {*movsi_internal}
+     (nil))
+(insn 36 35 37 5 (set (reg:SI 4 si)
+        (reg:SI 91)) "factorial.c":21:5 75 {*movsi_internal}
+     (nil))
+(insn 37 36 38 5 (set (reg:DI 92)
+        (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7c8cade3f0 *.LC0>)) "factorial.c":21:5 74 {*movdi_internal}
+     (nil))
+(insn 38 37 39 5 (set (reg:DI 5 di)
+        (reg:DI 92)) "factorial.c":21:5 74 {*movdi_internal}
+     (expr_list:REG_EQUAL (symbol_ref/f:DI ("*.LC0") [flags 0x2]  <var_decl 0x7f7c8cade3f0 *.LC0>)
+        (nil)))
+(insn 39 38 40 5 (set (reg:QI 0 ax)
+        (const_int 0 [0])) "factorial.c":21:5 77 {*movqi_internal}
+     (nil))
+(call_insn 40 39 41 5 (set (reg:SI 0 ax)
+        (call (mem:QI (symbol_ref:DI ("printf") [flags 0x41]  <function_decl 0x7f7c8c9f4100 printf>) [0 __builtin_printf S1 A8])
+            (const_int 0 [0]))) "factorial.c":21:5 824 {*call_value}
+     (nil)
+    (expr_list (use (reg:QI 0 ax))
+        (expr_list:DI (use (reg:DI 5 di))
+            (expr_list:SI (use (reg:SI 4 si))
+                (nil)))))
+(insn 41 40 44 5 (set (reg:SI 83 [ _11 ])
+        (const_int 0 [0])) "factorial.c":22:12 75 {*movsi_internal}
+     (nil))
+(insn 44 41 48 5 (set (reg:SI 84 [ <retval> ])
+        (reg:SI 83 [ _11 ])) "factorial.c":23:1 75 {*movsi_internal}
+     (nil))
+(insn 48 44 49 5 (parallel [
+            (set (reg:CCZ 17 flags)
+                (unspec:CCZ [
+                        (mem/v/f/c:DI (plus:DI (reg/f:DI 19 frame)
+                                (const_int -8 [0xfffffffffffffff8])) [1 D.2360+0 S8 A64])
+                        (mem/v/f:DI (const_int 40 [0x28]) [0 MEM[(<address-space-1> long unsigned int *)40B]+0 S8 A64 AS1])
+                    ] UNSPEC_SP_TEST))
+            (clobber (scratch:DI))
+        ]) "factorial.c":23:1 1164 {stack_protect_test_1_di}
+     (nil))
+(jump_insn 49 48 56 5 (set (pc)
+        (if_then_else (eq (reg:CCZ 17 flags)
+                (const_int 0 [0]))
+            (label_ref 52)
+            (pc))) "factorial.c":23:1 806 {*jcc}
+     (nil)
+ -> 52)
+(note 56 49 50 6 [bb 6] NOTE_INSN_BASIC_BLOCK)
+(call_insn 50 56 52 6 (call (mem:QI (symbol_ref:DI ("__stack_chk_fail") [flags 0x41]  <function_decl 0x7f7c8cae3400 __stack_chk_fail>) [0 __stack_chk_fail S1 A8])
+        (const_int 0 [0])) "factorial.c":23:1 813 {*call}
+     (expr_list:REG_ARGS_SIZE (const_int 0 [0])
+        (expr_list:REG_NORETURN (const_int 0 [0])
+            (expr_list:REG_EH_REGION (const_int 0 [0])
+                (nil))))
+    (nil))
+(code_label 52 50 57 7 5 (nil) [1 uses])
+(note 57 52 53 7 [bb 7] NOTE_INSN_BASIC_BLOCK)
+(insn 53 57 54 7 (set (reg/i:SI 0 ax)
+        (reg:SI 84 [ <retval> ])) "factorial.c":23:1 75 {*movsi_internal}
+     (nil))
+(insn 54 53 0 7 (use (reg/i:SI 0 ax)) "factorial.c":23:1 -1
+     (nil))
