@@ -316,7 +316,7 @@ void check_init(vector <int> v, string s){
         }
     }
 }
-//此函数的工作方式与check_init函数相似，但是是检查给定的状态集合是否包含NFA的最终状态。
+//此函数的工作方式与check_init函数相似，但是是检查给定的状态集合是否包含NFA的最终状态FSC
 void check_fin(vector <int> v, string s){
     for(int i=0;i<v.size();i++){
         if(v[i] == fin[0]){
@@ -326,7 +326,7 @@ void check_fin(vector <int> v, string s){
     }
 }
 
-
+//FSC
 
 //子集构造法进行从NFA到DFA的转换
 int nfa2dfa(int nfa_table[][col],int states,string dfa_tab[][3]){
@@ -456,7 +456,7 @@ int nfa2dfa(int nfa_table[][col],int states,string dfa_tab[][3]){
     }
     return state;
 }
-
+//FSC
 int minimizedfa(string dfa[][3], int stateCount, string minimizedDFA[][3]) {
     map<string, map<string, string>> transitions;
     map<string, int> toPartition;
