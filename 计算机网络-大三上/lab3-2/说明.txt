@@ -1,0 +1,7 @@
+1.包含client和server的cpp文件，同时包含一个Message的头文件
+2.方便编译的makefile
+3.server和client的可执行文件
+4.pdf版本的报告
+5.测试文件夹中的4个测试文件
+6.给定的router文件
+注意：这里面的发送文件的路径是从测试文件这个文件夹下进行读取的。

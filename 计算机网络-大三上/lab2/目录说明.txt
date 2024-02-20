@@ -1,0 +1,4 @@
+主要分为三个部分如下：
+1. dockerreflect文件夹下的内容是nginx架构的对应的docker映射文件夹，实现web搭建过程。具体搭建过程请见报告。文件中包含index.html、styles.css、logo.jpg、intro.mp3。
+2. 交互过程捕获文件.pcapng，这是捕获交互过程的文件，其中我筛选了8080端口，包含了完整的交互过程。
+3. pdf版本的报告
